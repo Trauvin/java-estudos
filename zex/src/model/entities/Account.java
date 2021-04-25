@@ -13,7 +13,6 @@ public class Account {
 	}
 
 	public Account(Integer number, String holder, Double balance, Double withdrawLimit) {
-		super();
 		this.number = number;
 		this.holder = holder;
 		this.balance = balance;
@@ -49,6 +48,11 @@ public class Account {
 	}
 	
 	public void withdraw(double amount) {
+		validateWithdraw(amount);
+		balance -= amount;
+	}
+	
+	private void validateWithdraw(double amount) {
 		
 		if (withdrawLimit > balance) {
 			throw new DomainException("Withdraw error: Not enough balance");
